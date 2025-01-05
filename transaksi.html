@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Transaksi Pembelian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .section p {
+            margin: 10px 0;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f4f4f4;
+        }
+        .total-price {
+            font-weight: bold;
+            font-size: 18px;
+            color: blue;
+        }
+        .method-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .method-list li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+        .pin-input {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Detail Transaksi Pembayaran</h1>
+</header>
+
+<div class="container">
+    <!-- Detail Transaksi Section -->
+    <div class="section">
+        <h3>Detail Transaksi</h3>
+        <p><strong>Nomor Transaksi:</strong> #123456789</p>
+        <p><strong>Tanggal Pembelian:</strong> 3 Januari 2025</p>
+        <p><strong>Status Pembayaran:</strong> Belum Dibayar</p>
+    </div>
+
+    <!-- Barang yang Dibeli Section -->
+    <div class="section">
+        <h3>Barang yang Dibeli</h3>
+        <table class="table">
+            <tr>
+                <th>Nama Barang</th>
+                <th>Harga</th>
+                <th>Kuantitas</th>
+                <th>Total Harga</th>
+            </tr>
+            <tr>
+                <td>Laptop</td>
+                <td>Rp 2.300.000</td>
+                <td>1</td>
+                <td>Rp 2.300.000</td>
+            </tr>
+        </table>
+        <p class="total-price">Total Pembelian: Rp 2.300.000</p>
+    </div>
+
+    <!-- Metode Pembayaran Section -->
+    <div class="section">
+        <h3>Metode Pembayaran</h3>
+        <ul class="method-list">
+            <li>
+                <label for="bca">
+                    <input type="radio" id="bca" name="payment-method" value="BCA">
+                    Transfer Bank (BCA)
+                </label>
+            </li>
+            <li>
+                <label for="visa">
+                    <input type="radio" id="visa" name="payment-method" value="Visa">
+                    Credit Card (Visa)
+                </label>
+            </li>
+            <li>
+                <label for="gopay">
+                    <input type="radio" id="gopay" name="payment-method" value="GoPay">
+                    GoPay
+                </label>
+            </li>
+        </ul>
+    </div>
+
+    <!-- PIN Pengguna Section -->
+    <div class="section">
+        <h3>Masukkan PIN Anda</h3>
+        <input type="password" id="pin" class="pin-input" placeholder="Masukkan PIN" maxlength="6">
+    </div>
+
+    <button onclick="completeTransaction()">Konfirmasi Pembayaran</button>
+</div>
+
+<script>
+    // Fungsi untuk menyelesaikan transaksi dan mengonfirmasi pembayaran
+    function completeTransaction() {
+        // Mengecek apakah ada metode pembayaran yang dipilih
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
+        const pin = document.getElementById('pin').value;
+
+        // Jika tidak ada metode pembayaran yang dipilih
+        if (!paymentMethod) {
+            alert("Silakan pilih metode pembayaran terlebih dahulu.");
+            return;
+        }
+
+        // Mengecek apakah PIN valid
+        if (pin.length !== 6 || isNaN(pin)) {
+            alert("PIN harus terdiri dari 6 angka.");
+            return;
+        }
+
+        // Menampilkan pesan konfirmasi pembayaran
+        const method = paymentMethod.value;
+        alert("Transaksi berhasil! Anda memilih metode pembayaran: " + method + " dengan PIN yang valid.");
+    }
+</script>
+
+</body>
+</html>
+ 
